@@ -15,16 +15,18 @@
             <input
               type="email"
               id="form1Example13"
+              name="userEmail"
               [(ngModel)]="loginObj.userEmail"
               class="form-control form-control-lg"
             />
-            <label class="form-label" for="form1Example13">gmail</label>
+            <label class="form-label" for="form1Example13">Email</label>
           </div>
 
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
             <input
               [(ngModel)]="loginObj.password"
+              name="password"
               type="password"
               id="form1Example23"
               class="form-control form-control-lg"
@@ -51,10 +53,11 @@
 
           <!-- Submit button -->
           <button
-            type="submit"
+            type="button"
             data-mdb-button-init
             data-mdb-ripple-init
             class="btn btn-primary btn-lg btn-block"
+            (click)="onLogin()"
           >
             Sign in
           </button>
