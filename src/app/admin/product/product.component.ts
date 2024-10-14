@@ -25,16 +25,33 @@ export class ProductComponent implements OnInit {
     productImageUrl: '',
   };
   categoryList: any[] = [];
+  productList: any[] = [];
   constructor(private productSrv: ProductService) {}
   ngOnInit(): void {
+    this.getPrducts();
     this.getAllCategory();
+  }
+  getPrducts() {
+    this.productSrv.getProducts().subscribe((res: any) => {
+      this.categoryList = res.data;
+    });
   }
   getAllCategory() {
     this.productSrv.getCategory().subscribe((res: any) => {
       this.categoryList = res.data;
     });
   }
-  onSave() {}
+  onSave() {
+    this.productSrv.savePrduct(this.productObj).subscribe((res: any) => {
+      debugger;
+      if (res.result) {
+        alert('Product Created');
+        this.getPrducts();
+      } else {
+        alert(res.message);
+      }
+    });
+  }
   openSidePane() {
     this.isSidePanelVisible = true;
   }
